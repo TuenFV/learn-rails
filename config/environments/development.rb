@@ -67,4 +67,19 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  config.action_mailer.smtp_settings = {
+  address: "smtp.sendgrid.net",
+  port: 587,
+  domain: Rails.application.secrets.domain_name,
+  authentication: "plain",
+  enable_starttls_auto: true,
+  user_name: Rails.application.secrets.email_provider_username,
+  password: Rails.application.secrets.email_provider_password
+  }
+# ActionMailer Config
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+# Send email in development mode?
+  config.action_mailer.perform_deliveries = true
 end
