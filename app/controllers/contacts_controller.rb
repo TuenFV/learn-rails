@@ -1,5 +1,8 @@
 class ContactsController < ApplicationController
   
+  def index
+  end
+
   def new
     @contact = Contact.new
   end
@@ -8,7 +11,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(secure_params)
     if @contact.valid?
       Rails.logger.debug 'DEBUG: Sending an email...'
-      UserMailer.contact_email(@contact).deliver_now
+      #UserMailer.contact_email(@contact).deliver_now
       flash[:notice] = "Message sent from #{@contact.name}."
       redirect_to root_path
     else
